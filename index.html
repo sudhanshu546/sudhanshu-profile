@@ -8,6 +8,7 @@
 <meta property="og:title" content="Sudhanshu Saini — Java Full-Stack Developer">
 <meta property="og:description" content="2+ years building microservices, SaaS platforms, and production-ready web apps.">
 <meta property="og:type" content="profile">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   :root {
     --bg: #f1f5f9;
@@ -306,7 +307,7 @@
     </div>
     <div class="cta-row">
       <a class="btn primary" href="#contact">Get in Touch</a>
-      <a class="btn" href="sudhanshu_saini_software_engineer.pdf" download="sudhanshu_saini_software_engineer.pdf">Download Resume</a>
+      <a class="btn" href="javascript:void(0)" onclick="downloadResume()">Download Resume</a>
       <a class="btn" href="https://www.linkedin.com/in/sudhanshusaini1/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn" href="https://github.com/sudhanshu546" target="_blank" rel="noopener">GitHub</a>
       <a class="btn" href="mailto:sudhanshusaini546@gmail.com">Email</a>
@@ -608,7 +609,7 @@
         <a class="contact-card" href="https://github.com/sudhanshu546" target="_blank" rel="noopener">
           <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.8-2.4 4.6-4.6 4.9.4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span><b>GitHub</b><span>github.com/sudhanshu546</span>
         </a>
-        <a class="contact-card" href="sudhanshu_saini_software_engineer.pdf" download="sudhanshu_saini_software_engineer.pdf">
+        <a class="contact-card" href="javascript:void(0)" onclick="downloadResume()">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg></span><b>Resume</b><span>Download PDF</span>
         </a>
       </div>
@@ -627,6 +628,188 @@
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  function downloadResume() {
+    if (typeof window.jspdf === "undefined") {
+      alert("Resume generator failed to load. Please check your internet connection and try again.");
+      return;
+    }
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: "mm", format: "a4" });
+    const pw = doc.internal.pageSize.getWidth();
+    const ph = doc.internal.pageSize.getHeight();
+    const ml = 14, mr = 14, mt = 16, mb = 16;
+    const cw = pw - ml - mr;
+    let y = mt;
+
+    const ACCENT = [3, 105, 161];
+    const DARK = [15, 23, 42];
+    const MUTED = [82, 96, 114];
+    const GRAY = [100, 116, 139];
+    const lh = size => size * 0.3528 * 1.3;
+    const clean = s => s.replace(/\s+/g, " ").trim();
+    const need = h => { if (y + h > ph - mb) { doc.addPage(); y = mt; } };
+
+    const sectionTitle = t => {
+      need(12);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(12); doc.setTextColor(...ACCENT);
+      doc.text(t.toUpperCase(), ml, y); y += lh(12);
+      doc.setDrawColor(...ACCENT); doc.setLineWidth(0.4);
+      doc.line(ml, y, pw - mr, y); y += 4.5;
+    };
+
+    const wrap = (text, size) => doc.splitTextToSize(text, cw);
+
+    const info = {};
+    document.querySelectorAll(".info-list li").forEach(li => {
+      const k = li.querySelector(".k")?.textContent.trim();
+      const v = li.querySelector(".v")?.textContent.trim();
+      if (k && v) info[k.toLowerCase()] = v;
+    });
+
+    const name = document.querySelector("h1")?.textContent.trim() || "Sudhanshu Saini";
+    const role = document.querySelector(".role")?.textContent.trim() || "";
+
+    doc.setFont("helvetica", "bold"); doc.setFontSize(22); doc.setTextColor(...DARK);
+    doc.text(name, ml, y); y += lh(22);
+    if (role) {
+      doc.setFont("helvetica", "normal"); doc.setFontSize(11.5); doc.setTextColor(...ACCENT);
+      doc.text(role, ml, y); y += lh(11.5) + 2;
+    }
+    doc.setFontSize(9); doc.setTextColor(...GRAY);
+    const line1 = [info.location, info.phone, info.email].filter(Boolean).join("   |   ");
+    const line2 = [info.linkedin, info.github].filter(Boolean).join("   |   ");
+    if (line1) { doc.text(line1, ml, y); y += lh(9); }
+    if (line2) { doc.text(line2, ml, y); y += lh(9); }
+    y += 2;
+    doc.setDrawColor(...ACCENT); doc.setLineWidth(0.8);
+    doc.line(ml, y, pw - mr, y); y += 6;
+
+    sectionTitle("Profile");
+    document.querySelectorAll("#about .about-grid > div:first-child p").forEach(p => {
+      const lines = wrap(clean(p.textContent), 9.5);
+      need(lines.length * lh(9.5) + 1);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...DARK);
+      doc.text(lines, ml, y);
+      y += lines.length * lh(9.5) + 1.5;
+    });
+    y += 3;
+
+    sectionTitle("Work Experience");
+    document.querySelectorAll("#experience .tl-item").forEach((item, idx) => {
+      const title = clean(item.querySelector(".tl-head h3")?.textContent || "");
+      const org = item.querySelector(".tl-org")?.textContent.trim() || "";
+      const date = item.querySelector(".tl-date")?.textContent.trim() || "";
+      need(16);
+      if (idx > 0) { doc.setDrawColor(...GRAY); doc.setLineWidth(0.2); doc.line(ml, y, pw - mr, y); y += 3; }
+      doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...DARK);
+      doc.text(title, ml, y); y += lh(10.5);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...MUTED);
+      doc.text(clean(org) + (date ? "   ·   " + date : ""), ml, y); y += lh(9) + 1.5;
+      item.querySelectorAll(".tl-body li").forEach(li => {
+        const lines = wrap(clean(li.textContent), 9.5);
+        need(lines.length * lh(9.5) + 1.5);
+        doc.setFontSize(9.5); doc.setTextColor(...DARK);
+        doc.text("•", ml, y);
+        doc.text(lines, ml + 4, y);
+        y += lines.length * lh(9.5) + 1.5;
+      });
+      y += 2.5;
+    });
+
+    sectionTitle("Technical Skills");
+    document.querySelectorAll("#skills .skill-group").forEach(group => {
+      const gname = group.querySelector("h3")?.textContent.trim() || "";
+      const skills = [];
+      group.querySelectorAll(".skill-row").forEach(row => {
+        const b = row.querySelector("b")?.textContent.trim();
+        const pct = row.querySelector(".label span")?.textContent.trim();
+        if (b) skills.push(pct ? b + " (" + pct + ")" : b);
+      });
+      need(9);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(9.5); doc.setTextColor(...ACCENT);
+      doc.text(gname.toUpperCase(), ml, y); y += lh(9.5) + 1;
+      if (skills.length) {
+        const lines = wrap(skills.join("  ·  "), 9);
+        need(lines.length * lh(9) + 1);
+        doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...DARK);
+        doc.text(lines, ml, y);
+        y += lines.length * lh(9) + 2;
+      }
+    });
+    y += 2;
+
+    sectionTitle("Professional Projects");
+    document.querySelectorAll("#projects .proj").forEach((p, idx) => {
+      const t = clean(p.querySelector("h3")?.textContent || "");
+      const ind = p.querySelector(".industry")?.textContent.trim() || "";
+      const tags = Array.from(p.querySelectorAll(".tags span")).map(s => s.textContent.trim()).join(", ");
+      const desc = clean(p.querySelector("p")?.textContent || "");
+      need(14);
+      if (idx > 0) { doc.setDrawColor(...GRAY); doc.setLineWidth(0.2); doc.line(ml, y, pw - mr, y); y += 3; }
+      doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...DARK);
+      doc.text(t, ml, y); y += lh(10.5);
+      if (ind) {
+        doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...MUTED);
+        doc.text(ind, ml, y); y += lh(8.5);
+      }
+      if (tags) {
+        doc.setFontSize(8.5); doc.setTextColor(...ACCENT);
+        const tl = wrap(tags, cw);
+        need(tl.length * lh(8.5) + 1);
+        doc.text(tl, ml, y);
+        y += tl.length * lh(8.5) + 1;
+      }
+      if (desc) {
+        doc.setFontSize(9); doc.setTextColor(...DARK);
+        const dl = wrap(desc, cw);
+        need(dl.length * lh(9) + 1);
+        doc.text(dl, ml, y);
+        y += dl.length * lh(9) + 1;
+      }
+      y += 2;
+    });
+
+    sectionTitle("Featured Builds & Open Source");
+    document.querySelectorAll("#opensource .repo-row").forEach((r, idx) => {
+      const n = clean(r.querySelector(".name")?.textContent || "");
+      const d = clean(r.querySelector(".desc")?.textContent || "");
+      const links = Array.from(r.querySelectorAll(".repo-link")).map(a => a.textContent.trim() + ": " + a.href).join("   |   ");
+      need(14);
+      if (idx > 0) { doc.setDrawColor(...GRAY); doc.setLineWidth(0.2); doc.line(ml, y, pw - mr, y); y += 3; }
+      doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...DARK);
+      doc.text(n, ml, y); y += lh(10.5);
+      if (d) {
+        doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...DARK);
+        const dl = wrap(d, cw);
+        need(dl.length * lh(9) + 1);
+        doc.text(dl, ml, y);
+        y += dl.length * lh(9) + 1;
+      }
+      if (links) {
+        doc.setFontSize(8.5); doc.setTextColor(...ACCENT);
+        const ll = wrap(links, cw);
+        need(ll.length * lh(8.5) + 1);
+        doc.text(ll, ml, y);
+        y += ll.length * lh(8.5) + 1;
+      }
+      y += 2;
+    });
+
+    sectionTitle("Education");
+    document.querySelectorAll("#education .edu-card").forEach(e => {
+      const t = clean(e.querySelector("h3")?.textContent || "");
+      const school = e.querySelector("p")?.textContent.trim() || "";
+      const meta = e.querySelector(".meta")?.textContent.trim() || "";
+      need(10);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...DARK);
+      doc.text(t, ml, y); y += lh(10.5);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...MUTED);
+      doc.text([school, meta].filter(Boolean).join("   ·   "), ml, y); y += lh(9) + 3;
+    });
+
+    doc.save("sudhanshu_saini_software_engineer.pdf");
+  }
 
   const navToggle = document.getElementById("navToggle");
   const navLinks = document.getElementById("navLinks");
