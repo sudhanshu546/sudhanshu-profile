@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudhanshu Saini — Java Full-Stack Developer</title>
+<meta name="description" content="Java Full-Stack Developer with 2+ years building scalable microservices, multi-tenant SaaS platforms, RBAC security, and distributed systems — Spring Boot, React, Kafka, Redis, Keycloak.">
+<meta property="og:title" content="Sudhanshu Saini — Java Full-Stack Developer">
+<meta property="og:description" content="2+ years building microservices, SaaS platforms, and production-ready web apps.">
+<meta property="og:type" content="profile">
+<style>
+  :root {
+    --bg: #f1f5f9;
+    --bg-alt: #ffffff;
+    --card: #ffffff;
+    --card-2: #e2e8f0;
+    --text: #0f172a;
+    --muted: #526072;
+    --accent: #0369a1;
+    --accent-2: #6366f1;
+    --green: #059669;
+    --amber: #b45309;
+    --red: #dc2626;
+    --border: #dbe3ee;
+    --radius: 14px;
+    --shadow: 0 8px 24px rgba(15,23,42,.08);
+    --nav-bg: rgba(255,255,255,.9);
+  }
+  html[data-theme="dark"] {
+    --bg: #0b1120;
+    --bg-alt: #0f172a;
+    --card: #16213e;
+    --card-2: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-2: #818cf8;
+    --green: #34d399;
+    --amber: #fbbf24;
+    --red: #f87171;
+    --border: #2a3a55;
+    --shadow: 0 8px 30px rgba(0,0,0,.35);
+    --nav-bg: rgba(11,17,32,.85);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 22px; }
+  a { color: inherit; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+  .logo { font-weight: 800; letter-spacing: .5px; font-size: 18px; text-decoration: none; }
+  .logo span { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 10px; }
+  .theme-toggle {
+    background: var(--card-2); border: 1px solid var(--border); color: var(--text);
+    font-size: 15px; padding: 6px 10px; border-radius: 8px; cursor: pointer; transition: .2s; line-height: 1;
+  }
+  .theme-toggle:hover { border-color: var(--accent); }
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 14px;
+    padding: 8px 12px; border-radius: 8px; transition: .2s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--card-2); }
+  .nav-toggle { display: none; background: none; border: 1px solid var(--border); color: var(--text); font-size: 20px; padding: 4px 10px; border-radius: 8px; cursor: pointer; }
+
+  /* ---------- HERO ---------- */
+  header.hero {
+    position: relative;
+    background: radial-gradient(1000px 500px at 80% -20%, rgba(56,189,248,.22), transparent 60%),
+                radial-gradient(800px 400px at 10% 110%, rgba(129,140,248,.18), transparent 60%),
+                var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 64px 0 56px;
+    text-align: center;
+  }
+  .avatar {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 46px; font-weight: 800; color: #0b1120; margin-bottom: 18px;
+    box-shadow: 0 0 0 4px rgba(56,189,248,.2), 0 10px 40px rgba(56,189,248,.35);
+  }
+  h1 { font-size: 38px; letter-spacing: .5px; }
+  .role {
+    color: var(--accent); font-weight: 700; margin-top: 6px; font-size: 18px;
+  }
+  .tagline { color: var(--muted); margin-top: 14px; max-width: 720px; margin-inline: auto; font-size: 15.5px; }
+
+  .stats { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 28px; }
+  .stat {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 14px 22px; min-width: 130px;
+  }
+  .stat b { display: block; font-size: 26px; color: var(--accent); }
+  .stat span { font-size: 12.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 30px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 20px; border-radius: 10px; font-size: 14.5px; font-weight: 600;
+    text-decoration: none; border: 1px solid var(--border); background: var(--card); color: var(--text);
+    transition: .2s;
+  }
+  .btn:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
+  .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b1120; border: none; }
+  .btn.primary:hover { color: #0b1120; filter: brightness(1.1); }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  .section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .section-head .icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: flex; align-items: center; justify-content: center; color: #0b1120;
+  }
+  .section-head .icon svg { width: 20px; height: 20px; }
+  h2 { font-size: 24px; letter-spacing: 1px; }
+  .section-head .line { flex: 1; height: 1px; background: var(--border); }
+  .section-sub { color: var(--muted); font-size: 14.5px; margin-top: -16px; margin-bottom: 24px; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px 24px; box-shadow: var(--shadow);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 22px; }
+  .about-grid p { color: var(--muted); font-size: 15px; }
+  .about-grid p strong { color: var(--text); }
+  .info-list { list-style: none; }
+  .info-list li { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px dashed var(--border); font-size: 14.5px; }
+  .info-list li:last-child { border-bottom: none; }
+  .info-list .k { color: var(--muted); }
+  .info-list .v { text-align: right; font-weight: 600; }
+  .info-list .v a { color: var(--accent); text-decoration: none; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .chip {
+    background: var(--bg-alt); border: 1px solid var(--border); color: var(--text);
+    font-size: 12.5px; padding: 5px 11px; border-radius: 999px;
+  }
+  .chip.hl { border-color: rgba(56,189,248,.4); color: var(--accent); }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline { position: relative; padding-left: 26px; }
+  .timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+  .tl-item { position: relative; margin-bottom: 26px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -26px; top: 8px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent); border: 3px solid var(--bg);
+  }
+  .tl-item.current::before { background: var(--green); }
+  .tl-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+  .tl-head h3 { font-size: 17px; }
+  .tl-head .badge {
+    font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 999px;
+    background: rgba(52,211,153,.15); color: var(--green); border: 1px solid rgba(52,211,153,.35);
+  }
+  .tl-head .badge.past { background: rgba(148,163,184,.12); color: var(--muted); border-color: var(--border); }
+  .tl-org { color: var(--accent); font-weight: 600; font-size: 14.5px; }
+  .tl-date { color: var(--muted); font-size: 13px; }
+  .tl-body { list-style: none; margin-top: 12px; }
+  .tl-body li { position: relative; padding-left: 18px; margin-bottom: 8px; font-size: 14.5px; color: var(--muted); }
+  .tl-body li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); }
+
+  /* ---------- PROJECTS ---------- */
+  .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .proj {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 22px; box-shadow: var(--shadow); transition: .25s;
+  }
+  .proj:hover { transform: translateY(-4px); border-color: var(--accent-2); }
+  .proj h3 { font-size: 16.5px; }
+  .proj .industry { color: var(--amber); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+  .proj .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 12px; }
+  .proj .tags span {
+    font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px;
+    background: var(--bg-alt); border: 1px solid var(--border); color: var(--muted);
+  }
+  .proj p { font-size: 14px; color: var(--muted); }
+  .proj .links { margin-top: 14px; display: flex; gap: 12px; }
+  .proj .links a { color: var(--accent); font-size: 13.5px; font-weight: 600; text-decoration: none; }
+  .proj .links a:hover { text-decoration: underline; }
+
+  /* ---------- OPEN SOURCE ---------- */
+  .repo-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 20px; margin-bottom: 12px; text-decoration: none; transition: .2s;
+  }
+  .repo-row:hover { border-color: var(--accent); transform: translateX(4px); }
+  .repo-row .name { font-weight: 700; font-size: 15px; }
+  .repo-row .desc { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .repo-row .meta { text-align: right; color: var(--muted); font-size: 12.5px; white-space: nowrap; }
+  .repo-row .meta .lang { color: var(--green); font-weight: 600; }
+  .repo-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .repo-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; font-weight: 600; color: var(--accent);
+    text-decoration: none; border: 1px solid var(--border);
+    background: var(--bg-alt); padding: 4px 10px; border-radius: 8px; transition: .2s;
+  }
+  .repo-link:hover { border-color: var(--accent); color: var(--text); }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
+  .skill-group { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+  .skill-group h3 { font-size: 13px; letter-spacing: 1.5px; color: var(--accent); text-transform: uppercase; margin-bottom: 14px; }
+  .skill-row { margin-bottom: 12px; }
+  .skill-row:last-child { margin-bottom: 0; }
+  .skill-row .label { display: flex; justify-content: space-between; font-size: 13.5px; margin-bottom: 5px; }
+  .skill-row .label b { font-weight: 600; }
+  .skill-row .label span { color: var(--muted); font-size: 12px; }
+  .bar { height: 7px; background: var(--bg-alt); border-radius: 99px; overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); width: 0; transition: width 1s ease; }
+
+  /* ---------- EDUCATION ---------- */
+  .edu-card { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+  .edu-card .info h3 { font-size: 17px; }
+  .edu-card .info p { color: var(--muted); font-size: 14px; }
+  .edu-card .meta { color: var(--muted); font-size: 13.5px; text-align: right; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-cta { text-align: center; padding: 20px 0; }
+  .contact-cta p { color: var(--muted); margin: 10px auto 24px; max-width: 560px; }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+  .contact-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px; text-decoration: none; transition: .2s;
+  }
+  .contact-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .contact-card .ic { font-size: 22px; display: inline-flex; }
+  .contact-card .ic svg { width: 22px; height: 22px; }
+  .contact-card b { display: block; margin-top: 8px; font-size: 15px; }
+  .contact-card span { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; word-break: break-all; }
+
+  footer { padding: 30px 0; text-align: center; color: var(--muted); font-size: 13.5px; }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 760px) {
+    .nav-links {
+      display: none; position: absolute; top: 62px; left: 0; right: 0;
+      flex-direction: column; background: var(--bg-alt); border-bottom: 1px solid var(--border); padding: 10px 22px 16px;
+    }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: block; }
+    .about-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="#top" class="logo">Sudhanshu<span> Saini</span></a>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#opensource">Open Source</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container">
+    <div class="avatar">SS</div>
+    <h1>Sudhanshu Saini</h1>
+    <div class="role">Java Full-Stack Developer</div>
+    <p class="tagline">
+      Java Full-Stack Developer with <strong>2+ years</strong> shipping scalable microservices, multi-tenant
+      SaaS platforms, and production-ready web apps. I design secure, high-performance systems — Spring Boot,
+      React, Keycloak RBAC, Redis, Kafka, Cassandra, and PostgreSQL — and take end-to-end ownership from API
+      design to deployment.
+    </p>
+    <div class="stats">
+      <div class="stat"><b>2+</b><span>Years Exp.</span></div>
+      <div class="stat"><b>10+</b><span>Microservices</span></div>
+      <div class="stat"><b>30+</b><span>REST APIs</span></div>
+      <div class="stat"><b>40%</b><span>DB Load Cut</span></div>
+      <div class="stat"><b>500+</b><span>Connections</span></div>
+    </div>
+    <div class="cta-row">
+      <a class="btn primary" href="#contact">Get in Touch</a>
+      <a class="btn" href="https://www.linkedin.com/in/sudhanshusaini1/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/sudhanshu546" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="mailto:sudhanshusaini546@gmail.com">Email</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M4 20a8 8 0 0 1 16 0"/></svg></div>
+      <h2>About Me</h2>
+      <div class="line"></div>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>
+          I'm a <strong>Java Full-Stack Developer</strong> currently at <strong>Servosys Solutions</strong>, a
+          CMMI Level 3 BFSI product company, and previously at <strong>Hashstudioz Technologies</strong> — a global
+          product-engineering firm serving startups to Fortune 500 clients. I've built <strong>multi-tenant SaaS
+          platforms</strong>, <strong>RBAC-secured APIs</strong>, and <strong>distributed systems</strong> across
+          fuel automation, appointment booking, smart parking, and social networking domains.
+        </p>
+        <p style="margin-top:14px">
+          I thrive on <strong>system design</strong> and clean architecture — solving real problems like multi-tenant
+          isolation, high-frequency data ingestion (Cassandra → PostgreSQL pipelines), and secure identity with
+          Keycloak (OIDC). I care about measurable impact: faster APIs, lower DB load, and production-ready quality.
+        </p>
+        <div class="chips">
+          <span class="chip hl">Multi-tenant SaaS</span>
+          <span class="chip hl">RBAC &amp; Keycloak</span>
+          <span class="chip hl">Microservices</span>
+          <span class="chip hl">System Design</span>
+          <span class="chip">API Design</span>
+          <span class="chip">Data Pipelines</span>
+          <span class="chip">Caching</span>
+          <span class="chip">Agile / Scrum</span>
+        </div>
+      </div>
+      <div>
+        <ul class="info-list">
+          <li><span class="k">Location</span><span class="v">Noida, UP, India</span></li>
+          <li><span class="k">Current</span><span class="v">Servosys Solutions</span></li>
+          <li><span class="k">Education</span><span class="v">B.Tech CSE, 2023</span></li>
+          <li><span class="k">Email</span><span class="v"><a href="mailto:sudhanshusaini546@gmail.com">sudhanshusaini546@gmail.com</a></span></li>
+          <li><span class="k">Phone</span><span class="v"><a href="tel:+917726913361">+91-7726913361</a></span></li>
+          <li><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/sudhanshusaini1/" target="_blank" rel="noopener">sudhanshusaini1</a></span></li>
+          <li><span class="k">GitHub</span><span class="v"><a href="https://github.com/sudhanshu546" target="_blank" rel="noopener">sudhanshu546</a></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="section-head">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></div>
+      <h2>Work Experience</h2>
+      <div class="line"></div>
+    </div>
+    <p class="section-sub">Enterprise product engineering across BFSI process automation and global SaaS.</p>
+    <div class="timeline">
+
+      <div class="tl-item current">
+        <div class="tl-head">
+          <h3>Software Engineer — Java Full-Stack</h3>
+          <span class="badge">Current</span>
+        </div>
+        <div class="tl-org">Servosys Solutions (Unit of EML Consultancy)</div>
+        <div class="tl-date">Jun 2026 – Present · Noida</div>
+        <ul class="tl-body">
+          <li>Building a stock-audit workflow platform for <strong>ICICI Bank</strong> that onboards and empanels CA firms — multiple CAs submit stock-audit reports through the system.</li>
+          <li>Implementing case-tray-based workflow where cases flow between roles (RM / approver) for approval, rejection, and updates across different trays.</li>
+          <li>Developing backend modules with <strong>Java Servlet, JSP, and REST</strong>, backed by <strong>Oracle and PostgreSQL</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <h3>Software Engineer</h3>
+          <span class="badge past">Full-time · 2 yrs</span>
+        </div>
+        <div class="tl-org">Hashstudioz Technologies Pvt Ltd — Product Engineering</div>
+        <div class="tl-date">Nov 2023 – Oct 2025 · Noida</div>
+        <ul class="tl-body">
+          <li>Worked as a Java Backend Developer on 10+ microservices built using Spring Boot for multi-tenant SaaS products serving global clients.</li>
+          <li>Designed and implemented 30+ REST endpoints consumed by React-based frontends — booking, pricing, dashboards, and admin flows.</li>
+          <li>Optimized 20+ complex database queries, improving API response time by 25–30%.</li>
+          <li>Led Keycloak (OIDC) integration for a 3-tier multi-tenant architecture (System Admin, Tenant, End User) and implemented RBAC across 5+ user roles.</li>
+          <li>Improved system performance with Redis caching and optimized data models, reducing database load by ~40%.</li>
+          <li>Built schedulers and data pipelines moving high-frequency pump data from Cassandra into PostgreSQL for reporting.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-head">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2 0-2.8-.8-.7-2.2-.7-3 .8z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.9 7.6-6.1 11a22 22 0 0 1-3.9 2z"/></svg></div>
+      <h2>Professional Projects</h2>
+      <div class="line"></div>
+    </div>
+    <p class="section-sub">Real-world products shipped with end-to-end ownership — from API design to delivery.</p>
+    <div class="proj-grid">
+
+      <div class="proj">
+        <h3>Fuel Management System</h3>
+        <div class="industry">Fuel Retail / IoT Automation</div>
+        <div class="tags"><span>Spring Boot</span><span>API Gateway</span><span>Keycloak</span><span>Cassandra</span><span>PostgreSQL</span><span>Redis</span></div>
+        <p>
+          Multi-tenant fuel-automation platform for system admins, tenant operators, and pump admins. Architected core
+          backend microservices integrated via API Gateway, with Keycloak OIDC RBAC role flows and schedulers that
+          move high-frequency pump telemetry from Cassandra into PostgreSQL for reporting.
+        </p>
+      </div>
+
+      <div class="proj">
+        <h3>SpaSalon — Appointment Booking SaaS</h3>
+        <div class="industry">Salon / Service Industry SaaS</div>
+        <div class="tags"><span>Spring Boot</span><span>React.js</span><span>Microservices</span><span>Multi-tenant</span></div>
+        <p>
+          Multi-tenant appointment booking platform for system admin, salon admin, and salon users. Designed booking
+          logic — service selection, staff allocation, and slot management — and collaborated with frontend teams to
+          improve booking reliability and UX.
+        </p>
+      </div>
+
+      <div class="proj">
+        <h3>E-Parking System</h3>
+        <div class="industry">Smart Mobility / Urban Parking</div>
+        <div class="tags"><span>Spring Boot</span><span>REST APIs</span><span>Rule Engine</span></div>
+        <p>
+          Smart-parking platform with automated entry/exit workflows capturing timestamps and active sessions. Built a
+          pricing rule engine applying weekend discounts, EV discounts, day/night pricing, and hourly/daily rate logic,
+          with admin REST APIs to configure zones, lots, vehicle rules, and tariffs.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="opensource">
+  <div class="container">
+    <div class="section-head">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6-5.4-2.8-5.4 2.8 1-6L3.2 9.4l6.1-.9L12 3z"/></svg></div>
+      <h2>Featured Builds &amp; Open Source</h2>
+      <div class="line"></div>
+    </div>
+    <p class="section-sub">Hands-on projects on GitHub — microservices, event-driven systems, and product platforms.</p>
+
+    <div class="repo-row">
+      <div>
+        <div class="name">workforce-os</div>
+        <div class="desc">
+          End-to-end operational management platform for service-based businesses. Modules include
+          <strong>Service Cataloging</strong>, <strong>Sales Pipeline</strong> (Leads &amp; Quotations),
+          <strong>Workforce Dispatch</strong>, <strong>Mobile-first Job Fulfillment</strong>, and
+          <strong>Automated Invoicing</strong>. Built with Java (Spring Boot) and React — designed to run the full
+          operations lifecycle for field-service companies.
+        </div>
+        <div class="repo-links">
+          <a class="repo-link" href="https://github.com/sudhanshu546/workforce-os" target="_blank" rel="noopener">Repo</a>
+          <a class="repo-link" href="https://workforce-os-u19x.onrender.com/" target="_blank" rel="noopener">Live Demo</a>
+        </div>
+      </div>
+      <div class="meta"><span class="lang">Java · React</span><br>★ 1</div>
+    </div>
+
+    <div class="repo-row">
+      <div>
+        <div class="name">linkedin — Social Networking Platform</div>
+        <div class="desc">
+          Scalable social-networking platform built with Spring Boot microservices and React. Supports
+          <strong>user profiles, posts, connections, real-time notifications, and activity tracking</strong> using
+          <strong>Kafka</strong> (KRaft mode), <strong>Redis</strong>, and <strong>PostgreSQL</strong>. Event-driven
+          notification flow handles post-liked, comment-created, and profile-viewed events; React 19 frontend with
+          route protection and Keycloak-based auth.
+        </div>
+        <div class="repo-links">
+          <a class="repo-link" href="https://github.com/sudhanshu546/linkedin" target="_blank" rel="noopener">Repo</a>
+          <a class="repo-link" href="https://linkedin-liard.vercel.app" target="_blank" rel="noopener">Live Demo</a>
+        </div>
+      </div>
+      <div class="meta"><span class="lang">TypeScript</span><br>★ 1</div>
+    </div>
+
+    <div class="repo-row">
+      <div>
+        <div class="name">linkedin-clone — Microservices Architecture</div>
+        <div class="desc">
+          Full-scale microservices architecture with <strong>API Gateway</strong> and <strong>Service Discovery</strong>
+          routing to <strong>user, profile, job, chat, and notification services</strong>, plus shared
+          <strong>common-models</strong> and <strong>common-utility</strong> libraries. Dockerized services with
+          PowerShell build automation (build_all.ps1) and a start script for local orchestration.
+        </div>
+        <div class="repo-links">
+          <a class="repo-link" href="https://github.com/sudhanshu546/linkedin-clone" target="_blank" rel="noopener">Repo</a>
+        </div>
+      </div>
+      <div class="meta"><span class="lang">Java</span><br>42 commits</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-head">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/></svg></div>
+      <h2>Technical Skills</h2>
+      <div class="line"></div>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <h3>Backend</h3>
+        <div class="skill-row"><div class="label"><b>Java</b><span>90%</span></div><div class="bar"><i data-w="90%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>Spring Boot</b><span>85%</span></div><div class="bar"><i data-w="85%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>Microservices &amp; API Gateway</b><span>80%</span></div><div class="bar"><i data-w="80%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>Spring Security / Keycloak</b><span>78%</span></div><div class="bar"><i data-w="78%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>Java Servlets &amp; JSP</b><span>75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>JPA / Hibernate</b><span>80%</span></div><div class="bar"><i data-w="80%"></i></div></div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Frontend</h3>
+        <div class="skill-row"><div class="label"><b>React.js</b><span>75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>JavaScript</b><span>75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>TypeScript</b><span>65%</span></div><div class="bar"><i data-w="65%"></i></div></div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Databases &amp; Data</h3>
+        <div class="skill-row"><div class="label"><b>PostgreSQL</b><span>85%</span></div><div class="bar"><i data-w="85%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>Oracle</b><span>70%</span></div><div class="bar"><i data-w="70%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>MySQL</b><span>80%</span></div><div class="bar"><i data-w="80%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>MongoDB</b><span>75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>Cassandra</b><span>70%</span></div><div class="bar"><i data-w="70%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>Redis</b><span>75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Tools &amp; DevOps</h3>
+        <div class="skill-row"><div class="label"><b>Git / GitHub</b><span>85%</span></div><div class="bar"><i data-w="85%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>Docker</b><span>65%</span></div><div class="bar"><i data-w="65%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>Maven / Gradle</b><span>80%</span></div><div class="bar"><i data-w="80%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>Postman</b><span>85%</span></div><div class="bar"><i data-w="85%"></i></div></div>
+        <div class="skill-row"><div class="label"><b>SonarQube</b><span>60%</span></div><div class="bar"><i data-w="60%"></i></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <div class="section-head">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11v4c0 1 3 3 6 3s6-2 6-3v-4"/></svg></div>
+      <h2>Education</h2>
+      <div class="line"></div>
+    </div>
+    <div class="card edu-card">
+      <div class="info">
+        <h3>B.Tech — Computer Science Engineering</h3>
+        <p>Galgotias University</p>
+      </div>
+      <div class="meta">Sep 2019 – Jun 2023</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+      <h2>Let's Connect</h2>
+      <div class="line"></div>
+    </div>
+    <div class="contact-cta">
+      <p>
+        Open to <strong>Java Backend / Full-Stack / Software Engineering</strong> roles — and always up for
+        collaborations, freelance builds, or a good conversation about microservices, SaaS architecture, and system design.
+      </p>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:sudhanshusaini546@gmail.com">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></span><b>Email</b><span>sudhanshusaini546@gmail.com</span>
+        </a>
+        <a class="contact-card" href="tel:+917726913361">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.11 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><b>Phone</b><span>+91-7726913361</span>
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/sudhanshusaini1/" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1-.02 5 2.5 2.5 0 0 1 .02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.4 2.6 4.4 6V21h-4v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H10V9z"/></svg></span><b>LinkedIn</b><span>/in/sudhanshusaini1</span>
+        </a>
+        <a class="contact-card" href="https://github.com/sudhanshu546" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.8-2.4 4.6-4.6 4.9.4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span><b>GitHub</b><span>github.com/sudhanshu546</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © <span id="year"></span> Sudhanshu Saini ·
+    <a href="mailto:sudhanshusaini546@gmail.com">Email</a> ·
+    <a href="https://www.linkedin.com/in/sudhanshusaini1/" target="_blank" rel="noopener">LinkedIn</a> ·
+    <a href="https://github.com/sudhanshu546" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const navToggle = document.getElementById("navToggle");
+  const navLinks = document.getElementById("navLinks");
+  navToggle.addEventListener("click", () => navLinks.classList.toggle("open"));
+  navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
+
+  const themeToggle = document.getElementById("themeToggle");
+  const applyTheme = theme => {
+    document.documentElement.setAttribute("data-theme", theme);
+    themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+  };
+  const saved = localStorage.getItem("theme");
+  applyTheme(saved === "dark" ? "dark" : "light");
+  themeToggle.addEventListener("click", () => {
+    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    applyTheme(next);
+    localStorage.setItem("theme", next);
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll(".bar i").forEach(bar => bar.style.width = bar.dataset.w);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll(".skills-grid").forEach(grid => observer.observe(grid));
+</script>
+</body>
+</html>
