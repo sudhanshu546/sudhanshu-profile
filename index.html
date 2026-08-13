@@ -638,7 +638,7 @@
     const doc = new jsPDF({ unit: "mm", format: "a4" });
     const pw = doc.internal.pageSize.getWidth();
     const ph = doc.internal.pageSize.getHeight();
-    const ml = 14, mr = 14, mt = 16, mb = 16;
+    const ml = 13, mr = 13, mt = 10, mb = 10;
     const cw = pw - ml - mr;
     let y = mt;
 
@@ -646,21 +646,27 @@
     const DARK = [15, 23, 42];
     const MUTED = [82, 96, 114];
     const GRAY = [100, 116, 139];
-    const lh = size => size * 0.3528 * 1.3;
+    const lh = size => size * 0.3528 * 1.15;
     const clean = s => s.replace(/\s+/g, " ")
       .replace(/→/g, "->")
       .replace(/←/g, "<-")
       .replace(/…/g, "...")
       .replace(/[^\x00-\xFF\u2013\u2014\u2018\u2019\u201C\u201D\u2022\u2026]/g, "")
       .trim();
+    const short = (s, n) => {
+      if (s.length <= n) return s;
+      const cut = s.slice(0, n);
+      const sp = cut.lastIndexOf(" ");
+      return (sp > n * 0.5 ? cut.slice(0, sp) : cut) + "...";
+    };
     const need = h => { if (y + h > ph - mb) { doc.addPage(); y = mt; } };
 
     const sectionTitle = t => {
-      need(12);
-      doc.setFont("helvetica", "bold"); doc.setFontSize(12); doc.setTextColor(...ACCENT);
-      doc.text(t.toUpperCase(), ml, y); y += lh(12);
-      doc.setDrawColor(...ACCENT); doc.setLineWidth(0.4);
-      doc.line(ml, y, pw - mr, y); y += 4.5;
+      need(8);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...ACCENT);
+      doc.text(t.toUpperCase(), ml, y); y += lh(9);
+      doc.setDrawColor(...ACCENT); doc.setLineWidth(0.3);
+      doc.line(ml, y, pw - mr, y); y += 3;
     };
 
     const wrap = (text, size, maxW) => {
@@ -679,53 +685,53 @@
     const name = document.querySelector("h1")?.textContent.trim() || "Sudhanshu Saini";
     const role = document.querySelector(".role")?.textContent.trim() || "";
 
-    doc.setFont("helvetica", "bold"); doc.setFontSize(22); doc.setTextColor(...DARK);
-    doc.text(name, ml, y); y += lh(22);
-    if (role) {
-      doc.setFont("helvetica", "normal"); doc.setFontSize(11.5); doc.setTextColor(...ACCENT);
-      doc.text(role, ml, y); y += lh(11.5) + 2;
-    }
-    doc.setFontSize(9); doc.setTextColor(...GRAY);
-    const line1 = [info.location, info.phone, info.email].filter(Boolean).join("   |   ");
-    const line2 = [info.linkedin, info.github].filter(Boolean).join("   |   ");
-    if (line1) { doc.text(line1, ml, y); y += lh(9); }
-    if (line2) { doc.text(line2, ml, y); y += lh(9); }
-    y += 2;
-    doc.setDrawColor(...ACCENT); doc.setLineWidth(0.8);
-    doc.line(ml, y, pw - mr, y); y += 6;
+    doc.setFont("helvetica", "bold"); doc.setFontSize(16); doc.setTextColor(...DARK);
+    doc.text(name, ml, y); y += lh(16);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...ACCENT);
+    doc.text(role, ml, y); y += lh(9.5);
+    doc.setFontSize(7.5); doc.setTextColor(...GRAY);
+    const line1 = [info.location, info.phone, info.email].filter(Boolean).join("  |  ");
+    const line2 = [info.linkedin, info.github].filter(Boolean).join("  |  ");
+    if (line1) { doc.text(line1, ml, y); y += lh(7.5); }
+    if (line2) { doc.text(line2, ml, y); y += lh(7.5); }
+    y += 1.5;
+    doc.setDrawColor(...ACCENT); doc.setLineWidth(0.6);
+    doc.line(ml, y, pw - mr, y); y += 4;
 
     sectionTitle("Profile");
-    document.querySelectorAll("#about .about-grid > div:first-child p").forEach(p => {
-      const lines = wrap(clean(p.textContent), 9.5);
-      need(lines.length * lh(9.5) + 1);
-      doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...DARK);
+    const firstP = document.querySelector("#about .about-grid > div:first-child p");
+    if (firstP) {
+      const lines = wrap(clean(firstP.textContent), 8.3);
+      need(lines.length * lh(8.3) + 1);
+      doc.setTextColor(...DARK);
       doc.text(lines, ml, y);
-      y += lines.length * lh(9.5) + 1.5;
-    });
-    y += 3;
+      y += lines.length * lh(8.3) + 1.5;
+    }
 
     sectionTitle("Work Experience");
     document.querySelectorAll("#experience .tl-item").forEach((item, idx) => {
       const title = clean(item.querySelector(".tl-head h3")?.textContent || "");
       const org = item.querySelector(".tl-org")?.textContent.trim() || "";
       const date = item.querySelector(".tl-date")?.textContent.trim() || "";
-      need(16);
-      if (idx > 0) { doc.setDrawColor(...GRAY); doc.setLineWidth(0.2); doc.line(ml, y, pw - mr, y); y += 3; }
-      doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...DARK);
-      doc.text(title, ml, y); y += lh(10.5);
-      doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...MUTED);
+      need(12);
+      if (idx > 0) { doc.setDrawColor(...GRAY); doc.setLineWidth(0.2); doc.line(ml, y, pw - mr, y); y += 2; }
+      doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...DARK);
+      doc.text(title, ml, y); y += lh(8.5);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(...MUTED);
       doc.text(clean(org), ml, y);
       if (date) doc.text(clean(date), pw - mr, y, { align: "right" });
-      y += lh(9) + 1.5;
-      item.querySelectorAll(".tl-body li").forEach(li => {
-        const lines = wrap(clean(li.textContent), 9.5, cw - 4);
-        need(lines.length * lh(9.5) + 1.5);
+      y += lh(7.5) + 1.2;
+      const bullets = item.querySelectorAll(".tl-body li");
+      const maxBullets = idx === 0 ? bullets.length : Math.min(bullets.length, 4);
+      for (let b = 0; b < maxBullets; b++) {
+        const lines = wrap(clean(bullets[b].textContent), 8.3, cw - 4);
+        need(lines.length * lh(8.3) + 1);
         doc.setTextColor(...DARK);
         doc.text("•", ml, y);
         doc.text(lines, ml + 4, y);
-        y += lines.length * lh(9.5) + 1.5;
-      });
-      y += 2.5;
+        y += lines.length * lh(8.3) + 1;
+      }
+      y += 1.0;
     });
 
     sectionTitle("Technical Skills");
@@ -737,74 +743,69 @@
         const pct = row.querySelector(".label span")?.textContent.trim();
         if (b) skills.push(pct ? b + " (" + pct + ")" : b);
       });
-      need(9);
-      doc.setFont("helvetica", "bold"); doc.setFontSize(9.5); doc.setTextColor(...ACCENT);
-      doc.text(gname.toUpperCase(), ml, y); y += lh(9.5) + 1;
+      need(6);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...ACCENT);
+      doc.text(gname.toUpperCase(), ml, y); y += lh(8) + 0.8;
       if (skills.length) {
-        const lines = wrap(skills.join("  ·  "), 9);
-        need(lines.length * lh(9) + 1);
-        doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...DARK);
+        const lines = wrap(skills.join("  ·  "), 7.5);
+        need(lines.length * lh(7.5) + 1);
+        doc.setFont("helvetica", "normal"); doc.setTextColor(...DARK);
         doc.text(lines, ml, y);
-        y += lines.length * lh(9) + 2;
+        y += lines.length * lh(7.5) + 1;
       }
     });
-    y += 2;
+    y += 1.0;
 
     sectionTitle("Professional Projects");
     document.querySelectorAll("#projects .proj").forEach((p, idx) => {
       const t = clean(p.querySelector("h3")?.textContent || "");
-      const ind = p.querySelector(".industry")?.textContent.trim() || "";
       const tags = Array.from(p.querySelectorAll(".tags span")).map(s => s.textContent.trim()).join(", ");
-      const desc = clean(p.querySelector("p")?.textContent || "");
-      need(14);
-      if (idx > 0) { doc.setDrawColor(...GRAY); doc.setLineWidth(0.2); doc.line(ml, y, pw - mr, y); y += 3; }
-      doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...DARK);
-      doc.text(t, ml, y); y += lh(10.5);
-      if (ind) {
-        doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...MUTED);
-        doc.text(ind, ml, y); y += lh(8.5);
-      }
+      const desc = short(clean(p.querySelector("p")?.textContent || ""), 90);
+      need(10);
+      if (idx > 0) { doc.setDrawColor(...GRAY); doc.setLineWidth(0.2); doc.line(ml, y, pw - mr, y); y += 2; }
+      doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...DARK);
+      doc.text(t, ml, y); y += lh(8.5);
       if (tags) {
-        const tl = wrap(tags, 8.5);
-        need(tl.length * lh(8.5) + 1);
-        doc.setTextColor(...ACCENT);
+        const tl = wrap(tags, 7.5);
+        need(tl.length * lh(7.5) + 1);
+        doc.setFont("helvetica", "normal"); doc.setTextColor(...ACCENT);
         doc.text(tl, ml, y);
-        y += tl.length * lh(8.5) + 1;
+        y += tl.length * lh(7.5) + 1;
       }
       if (desc) {
-        doc.setFontSize(9); doc.setTextColor(...DARK);
-        const dl = wrap(desc, 9);
-        need(dl.length * lh(9) + 1);
+        const dl = wrap(desc, 8);
+        need(dl.length * lh(8) + 1);
+        doc.setTextColor(...DARK);
         doc.text(dl, ml, y);
-        y += dl.length * lh(9) + 1;
+        y += dl.length * lh(8) + 1;
       }
-      y += 2;
+      y += 1.0;
     });
 
-    sectionTitle("Featured Builds & Open Source");
+    sectionTitle("Open Source");
     document.querySelectorAll("#opensource .repo-row").forEach((r, idx) => {
       const n = clean(r.querySelector(".name")?.textContent || "");
-      const d = clean(r.querySelector(".desc")?.textContent || "");
-      const links = Array.from(r.querySelectorAll(".repo-link")).map(a => a.textContent.trim() + ": " + a.href).join("   |   ");
-      need(14);
-      if (idx > 0) { doc.setDrawColor(...GRAY); doc.setLineWidth(0.2); doc.line(ml, y, pw - mr, y); y += 3; }
-      doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...DARK);
-      doc.text(n, ml, y); y += lh(10.5);
+      const d = short(clean(r.querySelector(".desc")?.textContent || ""), 60);
+      const links = Array.from(r.querySelectorAll(".repo-link")).map(a => a.textContent.trim() + ": " + a.href).join("  |  ");
+      need(8);
+      if (idx > 0) { doc.setDrawColor(...GRAY); doc.setLineWidth(0.2); doc.line(ml, y, pw - mr, y); y += 2; }
+      doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...DARK);
+      doc.text(n, ml, y); y += lh(8.5);
       if (d) {
-        doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...DARK);
-        const dl = wrap(d, 9);
-        need(dl.length * lh(9) + 1);
+        const dl = wrap(d, 7.5);
+        need(dl.length * lh(7.5) + 1);
+        doc.setFont("helvetica", "normal"); doc.setTextColor(...DARK);
         doc.text(dl, ml, y);
-        y += dl.length * lh(9) + 1;
+        y += dl.length * lh(7.5) + 1;
       }
       if (links) {
-        doc.setFontSize(8.5); doc.setTextColor(...ACCENT);
-        const ll = wrap(links, 8.5);
-        need(ll.length * lh(8.5) + 1);
+        const ll = wrap(links, 7.5);
+        need(ll.length * lh(7.5) + 1);
+        doc.setTextColor(...ACCENT);
         doc.text(ll, ml, y);
-        y += ll.length * lh(8.5) + 1;
+        y += ll.length * lh(7.5) + 1;
       }
-      y += 2;
+      y += 1.0;
     });
 
     sectionTitle("Education");
@@ -812,13 +813,13 @@
       const t = clean(e.querySelector("h3")?.textContent || "");
       const school = e.querySelector("p")?.textContent.trim() || "";
       const meta = e.querySelector(".meta")?.textContent.trim() || "";
-      need(10);
-      doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...DARK);
-      doc.text(t, ml, y); y += lh(10.5);
-      doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...MUTED);
+      need(8);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...DARK);
+      doc.text(t, ml, y); y += lh(8.5);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(...MUTED);
       doc.text(school, ml, y);
       if (meta) doc.text(meta, pw - mr, y, { align: "right" });
-      y += lh(9) + 3;
+      y += lh(7.5) + 2;
     });
 
     const total = doc.internal.getNumberOfPages();
