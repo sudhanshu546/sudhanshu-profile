@@ -3,45 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sudhanshu Saini — Java Full-Stack Developer</title>
-<meta name="description" content="Java Full-Stack Developer with 2+ years building scalable microservices, multi-tenant SaaS platforms, RBAC security, and distributed systems — Spring Boot, React, Kafka, Redis, Keycloak.">
-<meta property="og:title" content="Sudhanshu Saini — Java Full-Stack Developer">
-<meta property="og:description" content="2+ years building microservices, SaaS platforms, and production-ready web apps.">
+<title>Sudhanshu Saini — Java Backend Engineer | Spring Boot, Microservices, Distributed Systems</title>
+<meta name="description" content="Java Backend Engineer with 2+ years building Spring Boot microservices, REST APIs, multi-tenant SaaS platforms, Keycloak/OIDC RBAC security, Redis caching, and Kafka-based distributed systems.">
+<meta property="og:title" content="Sudhanshu Saini — Java Backend Engineer">
+<meta property="og:description" content="2+ years building Spring Boot microservices, REST APIs, and multi-tenant SaaS platforms.">
 <meta property="og:type" content="profile">
+<meta property="og:url" content="https://sudhanshusaini.dev/">
+<link rel="canonical" href="https://sudhanshusaini.dev/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sudhanshu Saini",
+  "jobTitle": "Java Backend Engineer",
+  "email": "mailto:sudhanshusaini546@gmail.com",
+  "telephone": "+91-7726913361",
+  "url": "https://sudhanshusaini.dev/",
+  "sameAs": [
+    "https://github.com/sudhanshu546",
+    "https://www.linkedin.com/in/sudhanshusaini1/"
+  ]
+}
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   :root {
-    --bg: #f1f5f9;
-    --bg-alt: #ffffff;
-    --card: #ffffff;
-    --card-2: #e2e8f0;
-    --text: #0f172a;
-    --muted: #526072;
+    --bg: #f5efe4;
+    --bg-alt: #fdf8ee;
+    --card: #fdf9f0;
+    --card-2: #ece2ce;
+    --text: #2b2215;
+    --muted: #6f6350;
     --accent: #0369a1;
     --accent-2: #6366f1;
     --green: #059669;
     --amber: #b45309;
     --red: #dc2626;
-    --border: #dbe3ee;
+    --border: #e7dcc5;
     --radius: 14px;
-    --shadow: 0 8px 24px rgba(15,23,42,.08);
-    --nav-bg: rgba(255,255,255,.9);
+    --shadow: 0 8px 24px rgba(122, 96, 55, .12);
+    --nav-bg: rgba(253, 249, 240, .9);
   }
   html[data-theme="dark"] {
-    --bg: #0b1120;
-    --bg-alt: #0f172a;
-    --card: #16213e;
-    --card-2: #1e293b;
-    --text: #e2e8f0;
-    --muted: #94a3b8;
+    --bg: #14100b;
+    --bg-alt: #1b1610;
+    --card: #211b13;
+    --card-2: #2a2318;
+    --text: #ece3d0;
+    --muted: #a3987d;
     --accent: #38bdf8;
     --accent-2: #818cf8;
     --green: #34d399;
     --amber: #fbbf24;
     --red: #f87171;
-    --border: #2a3a55;
-    --shadow: 0 8px 30px rgba(0,0,0,.35);
-    --nav-bg: rgba(11,17,32,.85);
+    --border: #3a3020;
+    --shadow: 0 8px 30px rgba(0,0,0,.45);
+    --nav-bg: rgba(20,16,11,.85);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -50,9 +67,11 @@
     background: var(--bg);
     color: var(--text);
     line-height: 1.65;
+    overflow-x: hidden;
   }
   .container { max-width: 1000px; margin: 0 auto; padding: 0 22px; }
   a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   /* ---------- NAV ---------- */
   nav {
@@ -85,7 +104,7 @@
                 radial-gradient(800px 400px at 10% 110%, rgba(129,140,248,.18), transparent 60%),
                 var(--bg-alt);
     border-bottom: 1px solid var(--border);
-    padding: 64px 0 56px;
+    padding: 64px 0 60px;
     text-align: center;
   }
   .avatar {
@@ -99,15 +118,30 @@
   .role {
     color: var(--accent); font-weight: 700; margin-top: 6px; font-size: 18px;
   }
-  .tagline { color: var(--muted); margin-top: 14px; max-width: 720px; margin-inline: auto; font-size: 15.5px; }
+  .role-sub {
+    color: var(--text); font-weight: 600; margin-top: 8px; font-size: 15px; letter-spacing: .4px;
+  }
+  .tagline { color: var(--muted); margin-top: 16px; max-width: 760px; margin-inline: auto; font-size: 15.5px; }
+  .tagline strong { color: var(--text); }
 
-  .stats { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 28px; }
+  .stats { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 30px; }
   .stat {
     background: var(--card); border: 1px solid var(--border); border-radius: 12px;
     padding: 14px 22px; min-width: 130px;
   }
   .stat b { display: block; font-size: 26px; color: var(--accent); }
-  .stat span { font-size: 12.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .stat span { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; }
+
+  .hero-details { margin-top: 28px; }
+  .hero-details .info-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .hero-details .info-list li {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 999px;
+    padding: 7px 14px; font-size: 13px;
+  }
+  .hero-details .info-list .k { color: var(--muted); }
+  .hero-details .info-list .v { color: var(--text); font-weight: 600; }
+  .hero-details .info-list .v a { color: var(--accent); text-decoration: none; }
 
   .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 30px; }
   .btn {
@@ -116,6 +150,7 @@
     text-decoration: none; border: 1px solid var(--border); background: var(--card); color: var(--text);
     transition: .2s;
   }
+  button.btn { font-family: inherit; cursor: pointer; }
   .btn:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
   .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b1120; border: none; }
   .btn.primary:hover { color: #0b1120; filter: brightness(1.1); }
@@ -138,22 +173,13 @@
     border-radius: var(--radius); padding: 22px 24px; box-shadow: var(--shadow);
   }
 
-  /* ---------- ABOUT ---------- */
-  .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 22px; }
-  .about-grid p { color: var(--muted); font-size: 15px; }
-  .about-grid p strong { color: var(--text); }
+  /* ---------- INFO / DETAILS ---------- */
   .info-list { list-style: none; }
   .info-list li { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px dashed var(--border); font-size: 14.5px; }
   .info-list li:last-child { border-bottom: none; }
   .info-list .k { color: var(--muted); }
   .info-list .v { text-align: right; font-weight: 600; }
   .info-list .v a { color: var(--accent); text-decoration: none; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-  .chip {
-    background: var(--bg-alt); border: 1px solid var(--border); color: var(--text);
-    font-size: 12.5px; padding: 5px 11px; border-radius: 999px;
-  }
-  .chip.hl { border-color: rgba(56,189,248,.4); color: var(--accent); }
 
   /* ---------- TIMELINE ---------- */
   .timeline { position: relative; padding-left: 26px; }
@@ -177,7 +203,28 @@
   .tl-date { color: var(--muted); font-size: 13px; }
   .tl-body { list-style: none; margin-top: 12px; }
   .tl-body li { position: relative; padding-left: 18px; margin-bottom: 8px; font-size: 14.5px; color: var(--muted); }
+  .tl-body li strong { color: var(--text); }
   .tl-body li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); }
+
+  /* ---------- FEATURED PROJECT ---------- */
+  .featured-card { position: relative; border: 1px solid var(--accent); }
+  .featured-card::before {
+    content: ""; position: absolute; inset: 0; border-radius: var(--radius);
+    background: radial-gradient(600px 300px at 100% 0%, rgba(56,189,248,.10), transparent 60%);
+    pointer-events: none;
+  }
+  .featured-main { position: relative; }
+  .featured-main .industry { color: var(--amber); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .featured-main h3 { font-size: 24px; margin-top: 4px; }
+  .featured-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 16px; }
+  .featured-tags span {
+    font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 6px;
+    background: var(--bg-alt); border: 1px solid var(--border); color: var(--text);
+  }
+  .featured-card p { color: var(--muted); font-size: 14.5px; margin-bottom: 10px; }
+  .featured-card p:last-of-type { margin-bottom: 0; }
+  .featured-card p strong { color: var(--text); }
+  .featured-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
 
   /* ---------- PROJECTS ---------- */
   .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
@@ -193,20 +240,20 @@
     font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px;
     background: var(--bg-alt); border: 1px solid var(--border); color: var(--muted);
   }
-  .proj p { font-size: 14px; color: var(--muted); }
-  .proj .links { margin-top: 14px; display: flex; gap: 12px; }
-  .proj .links a { color: var(--accent); font-size: 13.5px; font-weight: 600; text-decoration: none; }
-  .proj .links a:hover { text-decoration: underline; }
+  .proj p { font-size: 13.5px; color: var(--muted); margin-bottom: 6px; }
+  .proj p:last-of-type { margin-bottom: 0; }
+  .proj p strong { color: var(--text); }
 
-  /* ---------- OPEN SOURCE ---------- */
+  /* ---------- GITHUB PROJECTS ---------- */
   .repo-row {
     display: flex; align-items: center; justify-content: space-between; gap: 16px;
     background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-    padding: 16px 20px; margin-bottom: 12px; text-decoration: none; transition: .2s;
+    padding: 16px 20px; margin-bottom: 12px; transition: .2s;
   }
   .repo-row:hover { border-color: var(--accent); transform: translateX(4px); }
   .repo-row .name { font-weight: 700; font-size: 15px; }
   .repo-row .desc { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .repo-row .desc strong { color: var(--text); }
   .repo-row .meta { text-align: right; color: var(--muted); font-size: 12.5px; white-space: nowrap; }
   .repo-row .meta .lang { color: var(--green); font-weight: 600; }
   .repo-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
@@ -219,16 +266,22 @@
   .repo-link:hover { border-color: var(--accent); color: var(--text); }
 
   /* ---------- SKILLS ---------- */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
   .skill-group { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
-  .skill-group h3 { font-size: 13px; letter-spacing: 1.5px; color: var(--accent); text-transform: uppercase; margin-bottom: 14px; }
-  .skill-row { margin-bottom: 12px; }
-  .skill-row:last-child { margin-bottom: 0; }
-  .skill-row .label { display: flex; justify-content: space-between; font-size: 13.5px; margin-bottom: 5px; }
-  .skill-row .label b { font-weight: 600; }
-  .skill-row .label span { color: var(--muted); font-size: 12px; }
-  .bar { height: 7px; background: var(--bg-alt); border-radius: 99px; overflow: hidden; }
-  .bar i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); width: 0; transition: width 1s ease; }
+  .skill-group h3 { font-size: 13px; letter-spacing: 1.5px; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; }
+  .skill-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px; }
+  .skill-tile {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px;
+    background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 8px 14px; text-align: center; transition: .2s;
+  }
+  .skill-tile:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: var(--shadow); }
+  .skill-tile img, .skill-tile svg { width: 30px; height: 30px; }
+  .skill-tile span { font-size: 12px; font-weight: 600; line-height: 1.3; color: var(--text); }
+  html[data-theme="dark"] .skill-tile img[src*="openjdk"],
+  html[data-theme="dark"] .skill-tile img[src*="apachekafka"],
+  html[data-theme="dark"] .skill-tile img[src*="github"],
+  html[data-theme="dark"] .skill-tile img[src*="gradle"] { filter: invert(1); }
 
   /* ---------- EDUCATION ---------- */
   .edu-card { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
@@ -239,14 +292,17 @@
   /* ---------- CONTACT ---------- */
   .contact-cta { text-align: center; padding: 20px 0; }
   .contact-cta p { color: var(--muted); margin: 10px auto 24px; max-width: 560px; }
+  .contact-cta p strong { color: var(--text); }
   .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
   .contact-card {
     background: var(--card); border: 1px solid var(--border); border-radius: 12px;
     padding: 20px; text-decoration: none; transition: .2s;
   }
+  button.contact-card { font-family: inherit; cursor: pointer; color: var(--text); text-align: left; width: 100%; }
   .contact-card:hover { transform: translateY(-3px); border-color: var(--accent); }
   .contact-card .ic { font-size: 22px; display: inline-flex; }
   .contact-card .ic svg { width: 22px; height: 22px; }
+  html[data-theme="dark"] .contact-card[href*="github.com"] .ic svg { filter: invert(1); }
   .contact-card b { display: block; margin-top: 8px; font-size: 15px; }
   .contact-card span { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; word-break: break-all; }
 
@@ -261,26 +317,28 @@
     }
     .nav-links.open { display: flex; }
     .nav-toggle { display: block; }
-    .about-grid { grid-template-columns: 1fr; }
     h1 { font-size: 28px; }
+    .stat { min-width: 110px; padding: 12px 16px; }
+    .repo-row { flex-direction: column; align-items: flex-start; }
+    .repo-row .meta { text-align: left; margin-top: 8px; }
   }
 </style>
 </head>
 <body>
 
-<nav>
+<nav aria-label="Main navigation">
   <div class="container">
     <a href="#top" class="logo">Sudhanshu<span> Saini</span></a>
     <div class="nav-right">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">🌙</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">☰</button>
     </div>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#opensource">Open Source</a></li>
+      <li><a href="#featured">Featured Work</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#github">GitHub</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -289,100 +347,64 @@
 
 <header class="hero" id="top">
   <div class="container">
-    <div class="avatar">SS</div>
+    <div class="avatar" aria-hidden="true">SS</div>
     <h1>Sudhanshu Saini</h1>
-    <div class="role">Java Full-Stack Developer</div>
+    <div class="role">Java Backend Engineer</div>
+    <div class="role-sub">Spring Boot • Microservices • Distributed Systems</div>
     <p class="tagline">
-      Java Full-Stack Developer with <strong>2+ years</strong> shipping scalable microservices, multi-tenant
-      SaaS platforms, and production-ready web apps. I design secure, high-performance systems — Spring Boot,
-      React, Keycloak RBAC, Redis, Kafka, Cassandra, and PostgreSQL — and take end-to-end ownership from API
-      design to deployment.
+      I build <strong>production-grade Java backend systems</strong> using Spring Boot, microservices,
+      REST APIs, databases, caching, messaging, and secure identity (Keycloak / OIDC) — while also
+      working across the full stack when needed. <strong>2+ years</strong> shipping multi-tenant SaaS
+      platforms and distributed systems in BFSI and product-engineering environments.
     </p>
     <div class="stats">
-      <div class="stat"><b>2+</b><span>Years Exp.</span></div>
-      <div class="stat"><b>10+</b><span>Microservices</span></div>
-      <div class="stat"><b>30+</b><span>REST APIs</span></div>
-      <div class="stat"><b>40%</b><span>DB Load Cut</span></div>
-      <div class="stat"><b>500+</b><span>Connections</span></div>
+      <div class="stat"><b>10+</b><span>Production Microservices</span></div>
+      <div class="stat"><b>30+</b><span>REST API Development</span></div>
+      <div class="stat"><b>3-tier</b><span>Multi-Tenant Systems</span></div>
+      <div class="stat"><b>40%</b><span>Performance Optimization</span></div>
+    </div>
+    <div class="hero-details">
+      <ul class="info-list">
+        <li><span class="k">Location</span><span class="v">Noida, UP, India</span></li>
+        <li><span class="k">Email</span><span class="v"><a href="mailto:sudhanshusaini546@gmail.com">sudhanshusaini546@gmail.com</a></span></li>
+        <li><span class="k">Phone</span><span class="v"><a href="tel:+917726913361">+91-7726913361</a></span></li>
+        <li><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/sudhanshusaini1/" target="_blank" rel="noopener">sudhanshusaini1</a></span></li>
+        <li><span class="k">GitHub</span><span class="v"><a href="https://github.com/sudhanshu546" target="_blank" rel="noopener">sudhanshu546</a></span></li>
+      </ul>
     </div>
     <div class="cta-row">
-      <a class="btn primary" href="#contact">Get in Touch</a>
-      <a class="btn" href="javascript:void(0)" onclick="downloadResume()">Download Resume</a>
+      <a class="btn primary" href="#featured">View My Work</a>
+      <button class="btn" onclick="downloadResume()" aria-label="Download resume as PDF">Download Resume</button>
       <a class="btn" href="https://www.linkedin.com/in/sudhanshusaini1/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn" href="https://github.com/sudhanshu546" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn" href="mailto:sudhanshusaini546@gmail.com">Email</a>
+      <a class="btn" href="mailto:sudhanshusaini546@gmail.com">Email Me</a>
     </div>
   </div>
 </header>
 
-<section id="about">
-  <div class="container">
-    <div class="section-head">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M4 20a8 8 0 0 1 16 0"/></svg></div>
-      <h2>About Me</h2>
-      <div class="line"></div>
-    </div>
-    <div class="about-grid">
-      <div>
-        <p>
-          I'm a <strong>Java Full-Stack Developer</strong> currently at <strong>Servosys Solutions</strong>, a
-          CMMI Level 3 BFSI product company, and previously at <strong>Hashstudioz Technologies</strong> — a global
-          product-engineering firm serving startups to Fortune 500 clients. I've built <strong>multi-tenant SaaS
-          platforms</strong>, <strong>RBAC-secured APIs</strong>, and <strong>distributed systems</strong> across
-          fuel automation, appointment booking, smart parking, and social networking domains.
-        </p>
-        <p style="margin-top:14px">
-          I thrive on <strong>system design</strong> and clean architecture — solving real problems like multi-tenant
-          isolation, high-frequency data ingestion (Cassandra → PostgreSQL pipelines), and secure identity with
-          Keycloak (OIDC). I care about measurable impact: faster APIs, lower DB load, and production-ready quality.
-        </p>
-        <div class="chips">
-          <span class="chip hl">Multi-tenant SaaS</span>
-          <span class="chip hl">RBAC &amp; Keycloak</span>
-          <span class="chip hl">Microservices</span>
-          <span class="chip hl">System Design</span>
-          <span class="chip">API Design</span>
-          <span class="chip">Data Pipelines</span>
-          <span class="chip">Caching</span>
-          <span class="chip">Agile / Scrum</span>
-        </div>
-      </div>
-      <div>
-        <ul class="info-list">
-          <li><span class="k">Location</span><span class="v">Noida, UP, India</span></li>
-          <li><span class="k">Current</span><span class="v">Servosys Solutions</span></li>
-          <li><span class="k">Education</span><span class="v">B.Tech CSE, 2023</span></li>
-          <li><span class="k">Email</span><span class="v"><a href="mailto:sudhanshusaini546@gmail.com">sudhanshusaini546@gmail.com</a></span></li>
-          <li><span class="k">Phone</span><span class="v"><a href="tel:+917726913361">+91-7726913361</a></span></li>
-          <li><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/sudhanshusaini1/" target="_blank" rel="noopener">sudhanshusaini1</a></span></li>
-          <li><span class="k">GitHub</span><span class="v"><a href="https://github.com/sudhanshu546" target="_blank" rel="noopener">sudhanshu546</a></span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+<main>
 
 <section id="experience">
   <div class="container">
     <div class="section-head">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></div>
-      <h2>Work Experience</h2>
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></div>
+      <h2>Professional Experience</h2>
       <div class="line"></div>
     </div>
-    <p class="section-sub">Enterprise product engineering across BFSI process automation and global SaaS.</p>
+    <p class="section-sub">Enterprise product engineering across BFSI process automation and global multi-tenant SaaS.</p>
     <div class="timeline">
 
       <div class="tl-item current">
         <div class="tl-head">
-          <h3>Software Engineer — Java Full-Stack</h3>
+          <h3>Software Engineer — Java Backend</h3>
           <span class="badge">Current</span>
         </div>
         <div class="tl-org">Servosys Solutions (Unit of EML Consultancy)</div>
         <div class="tl-date">Jun 2026 – Present · Noida</div>
         <ul class="tl-body">
-          <li>Building a stock-audit workflow platform for <strong>ICICI Bank</strong> that onboards and empanels CA firms — multiple CAs submit stock-audit reports through the system.</li>
-          <li>Implementing case-tray-based workflow where cases flow between roles (RM / approver) for approval, rejection, and updates across different trays.</li>
-          <li>Developing backend modules with <strong>Java Servlet, JSP, and REST</strong>, backed by <strong>Oracle and PostgreSQL</strong>.</li>
+          <li>Building a stock-audit workflow platform for <strong>ICICI Bank</strong> that onboards and empanels CA firms, enabling multiple CAs to submit stock-audit reports through the system.</li>
+          <li>Implementing a case-tray workflow where audit cases flow between roles (RM / approver) for approval, rejection, and updates — enforcing role-based transitions as each case moves across trays.</li>
+          <li>Developing backend modules with <strong>Java Servlet, JSP, and REST</strong> on <strong>Oracle and PostgreSQL</strong>, supporting transactional workflows and reporting on the same platform.</li>
         </ul>
       </div>
 
@@ -394,13 +416,144 @@
         <div class="tl-org">Hashstudioz Technologies Pvt Ltd — Product Engineering</div>
         <div class="tl-date">Nov 2023 – Oct 2025 · Noida</div>
         <ul class="tl-body">
-          <li>Worked as a Java Backend Developer on 10+ microservices built using Spring Boot for multi-tenant SaaS products serving global clients.</li>
-          <li>Designed and implemented 30+ REST endpoints consumed by React-based frontends — booking, pricing, dashboards, and admin flows.</li>
-          <li>Optimized 20+ complex database queries, improving API response time by 25–30%.</li>
-          <li>Led Keycloak (OIDC) integration for a 3-tier multi-tenant architecture (System Admin, Tenant, End User) and implemented RBAC across 5+ user roles.</li>
-          <li>Improved system performance with Redis caching and optimized data models, reducing database load by ~40%.</li>
-          <li>Built schedulers and data pipelines moving high-frequency pump data from Cassandra into PostgreSQL for reporting.</li>
+          <li>Developed <strong>10+ Spring Boot microservices</strong> and <strong>30+ REST endpoints</strong> for multi-tenant SaaS workflows — booking, pricing, dashboards, and admin flows — consumed by React-based frontends.</li>
+          <li>Optimized <strong>20+ complex database queries</strong> and data models, improving API response time by <strong>25–30%</strong>.</li>
+          <li>Led <strong>Keycloak (OIDC)</strong> integration for a <strong>3-tier multi-tenant architecture</strong> (System Admin, Tenant, End User) and implemented <strong>RBAC across 5+ roles</strong>, isolating access per tenant.</li>
+          <li>Reduced database load by <strong>~40%</strong> using <strong>Redis caching</strong> and optimized data models on high-frequency read paths.</li>
+          <li>Built schedulers and data pipelines that move high-frequency pump telemetry from <strong>Cassandra</strong> into <strong>PostgreSQL</strong> for reporting.</li>
         </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="featured">
+  <div class="container">
+    <div class="section-head">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6-5.4-2.8-5.4 2.8 1-6L3.2 9.4l6.1-.9L12 3z"/></svg></div>
+      <h2>Featured Engineering Project</h2>
+      <div class="line"></div>
+    </div>
+    <p class="section-sub">A complete operational platform built end to end — Java backend, React frontend, live demo.</p>
+
+    <div class="proj featured-card">
+      <div class="featured-main">
+        <div class="industry">Full-Stack Operations Platform</div>
+        <h3>Workforce OS</h3>
+        <div class="featured-tags"><span>Java</span><span>Spring Boot</span><span>React</span><span>REST APIs</span></div>
+        <p><strong>Problem:</strong> Service businesses run disjointed operations — service catalogues, sales, dispatch, field jobs, and invoicing live in separate tools with no single source of truth.</p>
+        <p><strong>Solution:</strong> An end-to-end operational management platform for service-based businesses that runs the full operations lifecycle for field-service companies.</p>
+        <p><strong>Business modules:</strong> Service Cataloging, Sales Pipeline (Leads &amp; Quotations), Workforce Dispatch, Mobile-first Job Fulfillment, and Automated Invoicing.</p>
+        <p><strong>Architecture:</strong> Java (Spring Boot) backend exposing REST APIs consumed by a React frontend — designed to cover the complete operations lifecycle end to end.</p>
+        <div class="featured-actions">
+          <a class="btn primary" href="https://github.com/sudhanshu546/workforce-os" target="_blank" rel="noopener">View GitHub →</a>
+          <a class="btn" href="https://workforce-os-u19x.onrender.com/" target="_blank" rel="noopener">Live Demo →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-head">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/></svg></div>
+      <h2>Technical Skills</h2>
+      <div class="line"></div>
+    </div>
+    <p class="section-sub">Technologies and engineering areas I work with daily, grouped by relevance.</p>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <h3>Core Backend</h3>
+        <div class="skill-tiles">
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/openjdk" alt="Java" loading="lazy"><span>Java</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/springboot" alt="Spring Boot" loading="lazy"><span>Spring Boot</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/springsecurity" alt="Spring Security" loading="lazy"><span>Spring Security</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/hibernate" alt="JPA / Hibernate" loading="lazy"><span>JPA / Hibernate</span></div>
+          <div class="skill-tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f89820" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13l2 2 4-4"/></svg>
+            <span>Java Servlets &amp; JSP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Architecture</h3>
+        <div class="skill-tiles">
+          <div class="skill-tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M10.5 6.7 6.3 17.3"/><path d="M13.5 6.7 17.7 17.3"/><path d="M7 19h10"/></svg>
+            <span>Microservices</span>
+          </div>
+          <div class="skill-tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01"/><path d="M6 18h.01"/></svg>
+            <span>API Gateway</span>
+          </div>
+          <div class="skill-tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"/><path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/></svg>
+            <span>REST APIs</span>
+          </div>
+          <div class="skill-tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+            <span>Multi-Tenancy</span>
+          </div>
+          <div class="skill-tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <span>RBAC</span>
+          </div>
+          <div class="skill-tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>
+            <span>System Design</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Data</h3>
+        <div class="skill-tiles">
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/postgresql" alt="PostgreSQL" loading="lazy"><span>PostgreSQL</span></div>
+          <div class="skill-tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f80000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            <span>Oracle</span>
+          </div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/mysql" alt="MySQL" loading="lazy"><span>MySQL</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/mongodb" alt="MongoDB" loading="lazy"><span>MongoDB</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/apachecassandra" alt="Cassandra" loading="lazy"><span>Cassandra</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/redis" alt="Redis" loading="lazy"><span>Redis</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Messaging &amp; Distributed Systems</h3>
+        <div class="skill-tiles">
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/apachekafka" alt="Kafka" loading="lazy"><span>Kafka</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Frontend</h3>
+        <div class="skill-tiles">
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/react" alt="React" loading="lazy"><span>React</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/javascript" alt="JavaScript" loading="lazy"><span>JavaScript</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/typescript" alt="TypeScript" loading="lazy"><span>TypeScript</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>DevOps &amp; Tools</h3>
+        <div class="skill-tiles">
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/docker" alt="Docker" loading="lazy"><span>Docker</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/git" alt="Git" loading="lazy"><span>Git</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy"><span>GitHub</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/apachemaven" alt="Maven" loading="lazy"><span>Maven</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/gradle" alt="Gradle" loading="lazy"><span>Gradle</span></div>
+          <div class="skill-tile"><img class="sicon" src="https://cdn.simpleicons.org/postman" alt="Postman" loading="lazy"><span>Postman</span></div>
+          <div class="skill-tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4e9bcd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span>SonarQube</span>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -410,72 +563,66 @@
 <section id="projects">
   <div class="container">
     <div class="section-head">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2 0-2.8-.8-.7-2.2-.7-3 .8z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.9 7.6-6.1 11a22 22 0 0 1-3.9 2z"/></svg></div>
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2 0-2.8-.8-.7-2.2-.7-3 .8z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.9 7.6-6.1 11a22 22 0 0 1-3.9 2z"/></svg></div>
       <h2>Professional Projects</h2>
       <div class="line"></div>
     </div>
-    <p class="section-sub">Real-world products shipped with end-to-end ownership — from API design to delivery.</p>
+    <p class="section-sub">Real-world products built with end-to-end ownership — from API design to delivery.</p>
     <div class="proj-grid">
 
       <div class="proj">
         <h3>Fuel Management System</h3>
         <div class="industry">Fuel Retail / IoT Automation</div>
         <div class="tags"><span>Spring Boot</span><span>API Gateway</span><span>Keycloak</span><span>Cassandra</span><span>PostgreSQL</span><span>Redis</span></div>
-        <p>
-          Multi-tenant fuel-automation platform for system admins, tenant operators, and pump admins. Architected core
-          backend microservices integrated via API Gateway, with Keycloak OIDC RBAC role flows and schedulers that
-          move high-frequency pump telemetry from Cassandra into PostgreSQL for reporting.
-        </p>
+        <p><strong>Purpose:</strong> Multi-tenant fuel-automation platform for system admins, tenant operators, and pump admins.</p>
+        <p><strong>Contribution:</strong> Architected core backend microservices integrated via API Gateway; implemented Keycloak OIDC RBAC role flows.</p>
+        <p><strong>Challenge:</strong> High-frequency pump telemetry ingestion — built schedulers and pipelines moving data from Cassandra into PostgreSQL for reporting.</p>
       </div>
 
       <div class="proj">
         <h3>SpaSalon — Appointment Booking SaaS</h3>
         <div class="industry">Salon / Service Industry SaaS</div>
         <div class="tags"><span>Spring Boot</span><span>React.js</span><span>Microservices</span><span>Multi-tenant</span></div>
-        <p>
-          Multi-tenant appointment booking platform for system admin, salon admin, and salon users. Designed booking
-          logic — service selection, staff allocation, and slot management — and collaborated with frontend teams to
-          improve booking reliability and UX.
-        </p>
+        <p><strong>Purpose:</strong> Multi-tenant appointment booking for system admin, salon admin, and salon users.</p>
+        <p><strong>Contribution:</strong> Designed booking logic — service selection, staff allocation, and slot management; collaborated with the frontend team on booking reliability and UX.</p>
+        <p><strong>Challenge:</strong> Keeping booking state consistent across tenant roles while multiple salons operate on the same platform.</p>
       </div>
 
       <div class="proj">
         <h3>E-Parking System</h3>
         <div class="industry">Smart Mobility / Urban Parking</div>
         <div class="tags"><span>Spring Boot</span><span>REST APIs</span><span>Rule Engine</span></div>
-        <p>
-          Smart-parking platform with automated entry/exit workflows capturing timestamps and active sessions. Built a
-          pricing rule engine applying weekend discounts, EV discounts, day/night pricing, and hourly/daily rate logic,
-          with admin REST APIs to configure zones, lots, vehicle rules, and tariffs.
-        </p>
+        <p><strong>Purpose:</strong> Smart-parking platform with automated entry/exit workflows capturing timestamps and active sessions.</p>
+        <p><strong>Contribution:</strong> Built a pricing rule engine applying weekend discounts, EV discounts, day/night pricing, and hourly/daily rate logic.</p>
+        <p><strong>Challenge:</strong> Exposing admin REST APIs to configure zones, lots, vehicle rules, and tariffs without code changes.</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<section id="opensource">
+<section id="github">
   <div class="container">
     <div class="section-head">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6-5.4-2.8-5.4 2.8 1-6L3.2 9.4l6.1-.9L12 3z"/></svg></div>
-      <h2>Featured Builds &amp; Open Source</h2>
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></div>
+      <h2>Featured Engineering Projects</h2>
       <div class="line"></div>
     </div>
-    <p class="section-sub">Hands-on projects on GitHub — microservices, event-driven systems, and product platforms.</p>
+    <p class="section-sub">Engineering projects on GitHub — microservices, event-driven systems, and full-stack platforms.</p>
 
     <div class="repo-row">
       <div>
-        <div class="name">workforce-os</div>
+        <div class="name">linkedin — Social Networking Platform</div>
         <div class="desc">
-          End-to-end operational management platform for service-based businesses. Modules include
-          <strong>Service Cataloging</strong>, <strong>Sales Pipeline</strong> (Leads &amp; Quotations),
-          <strong>Workforce Dispatch</strong>, <strong>Mobile-first Job Fulfillment</strong>, and
-          <strong>Automated Invoicing</strong>. Built with Java (Spring Boot) and React — designed to run the full
-          operations lifecycle for field-service companies.
+          Event-driven social-networking platform built with Spring Boot microservices and React — user profiles,
+          posts, connections, <strong>real-time notifications</strong>, and activity tracking using <strong>Kafka</strong>
+          (KRaft mode), <strong>Redis</strong>, and <strong>PostgreSQL</strong>. Notification flow handles
+          post-liked, comment-created, and profile-viewed events; React 19 frontend with route protection and
+          Keycloak-based auth.
         </div>
         <div class="repo-links">
-          <a class="repo-link" href="https://github.com/sudhanshu546/workforce-os" target="_blank" rel="noopener">Repo</a>
-          <a class="repo-link" href="https://workforce-os-u19x.onrender.com/" target="_blank" rel="noopener">Live Demo</a>
+          <a class="repo-link" href="https://github.com/sudhanshu546/linkedin" target="_blank" rel="noopener">Repo</a>
+          <a class="repo-link" href="https://linkedin-liard.vercel.app" target="_blank" rel="noopener">Live Demo</a>
         </div>
       </div>
       <div class="meta"><span class="lang">Java · React</span><br>★ 1</div>
@@ -483,30 +630,12 @@
 
     <div class="repo-row">
       <div>
-        <div class="name">linkedin — Social Networking Platform</div>
-        <div class="desc">
-          Scalable social-networking platform built with Spring Boot microservices and React. Supports
-          <strong>user profiles, posts, connections, real-time notifications, and activity tracking</strong> using
-          <strong>Kafka</strong> (KRaft mode), <strong>Redis</strong>, and <strong>PostgreSQL</strong>. Event-driven
-          notification flow handles post-liked, comment-created, and profile-viewed events; React 19 frontend with
-          route protection and Keycloak-based auth.
-        </div>
-        <div class="repo-links">
-          <a class="repo-link" href="https://github.com/sudhanshu546/linkedin" target="_blank" rel="noopener">Repo</a>
-          <a class="repo-link" href="https://linkedin-liard.vercel.app" target="_blank" rel="noopener">Live Demo</a>
-        </div>
-      </div>
-      <div class="meta"><span class="lang">TypeScript</span><br>★ 1</div>
-    </div>
-
-    <div class="repo-row">
-      <div>
         <div class="name">linkedin-clone — Microservices Architecture</div>
         <div class="desc">
           Full-scale microservices architecture with <strong>API Gateway</strong> and <strong>Service Discovery</strong>
-          routing to <strong>user, profile, job, chat, and notification services</strong>, plus shared
-          <strong>common-models</strong> and <strong>common-utility</strong> libraries. Dockerized services with
-          PowerShell build automation (build_all.ps1) and a start script for local orchestration.
+          routing to user, profile, job, chat, and notification services, plus shared <strong>common-models</strong> and
+          <strong>common-utility</strong> libraries. Dockerized services with PowerShell build automation (build_all.ps1)
+          and a start script for local orchestration.
         </div>
         <div class="repo-links">
           <a class="repo-link" href="https://github.com/sudhanshu546/linkedin-clone" target="_blank" rel="noopener">Repo</a>
@@ -518,59 +647,10 @@
   </div>
 </section>
 
-<section id="skills">
-  <div class="container">
-    <div class="section-head">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/></svg></div>
-      <h2>Technical Skills</h2>
-      <div class="line"></div>
-    </div>
-    <div class="skills-grid">
-
-      <div class="skill-group">
-        <h3>Backend</h3>
-        <div class="skill-row"><div class="label"><b>Java</b><span>90%</span></div><div class="bar"><i data-w="90%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>Spring Boot</b><span>85%</span></div><div class="bar"><i data-w="85%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>Microservices &amp; API Gateway</b><span>80%</span></div><div class="bar"><i data-w="80%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>Spring Security / Keycloak</b><span>78%</span></div><div class="bar"><i data-w="78%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>Java Servlets &amp; JSP</b><span>75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>JPA / Hibernate</b><span>80%</span></div><div class="bar"><i data-w="80%"></i></div></div>
-      </div>
-
-      <div class="skill-group">
-        <h3>Frontend</h3>
-        <div class="skill-row"><div class="label"><b>React.js</b><span>75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>JavaScript</b><span>75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>TypeScript</b><span>65%</span></div><div class="bar"><i data-w="65%"></i></div></div>
-      </div>
-
-      <div class="skill-group">
-        <h3>Databases &amp; Data</h3>
-        <div class="skill-row"><div class="label"><b>PostgreSQL</b><span>85%</span></div><div class="bar"><i data-w="85%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>Oracle</b><span>70%</span></div><div class="bar"><i data-w="70%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>MySQL</b><span>80%</span></div><div class="bar"><i data-w="80%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>MongoDB</b><span>75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>Cassandra</b><span>70%</span></div><div class="bar"><i data-w="70%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>Redis</b><span>75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
-      </div>
-
-      <div class="skill-group">
-        <h3>Tools &amp; DevOps</h3>
-        <div class="skill-row"><div class="label"><b>Git / GitHub</b><span>85%</span></div><div class="bar"><i data-w="85%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>Docker</b><span>65%</span></div><div class="bar"><i data-w="65%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>Maven / Gradle</b><span>80%</span></div><div class="bar"><i data-w="80%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>Postman</b><span>85%</span></div><div class="bar"><i data-w="85%"></i></div></div>
-        <div class="skill-row"><div class="label"><b>SonarQube</b><span>60%</span></div><div class="bar"><i data-w="60%"></i></div></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <section id="education">
   <div class="container">
     <div class="section-head">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11v4c0 1 3 3 6 3s6-2 6-3v-4"/></svg></div>
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11v4c0 1 3 3 6 3s6-2 6-3v-4"/></svg></div>
       <h2>Education</h2>
       <div class="line"></div>
     </div>
@@ -587,7 +667,7 @@
 <section id="contact">
   <div class="container">
     <div class="section-head">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
       <h2>Let's Connect</h2>
       <div class="line"></div>
     </div>
@@ -598,24 +678,26 @@
       </p>
       <div class="contact-grid">
         <a class="contact-card" href="mailto:sudhanshusaini546@gmail.com">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></span><b>Email</b><span>sudhanshusaini546@gmail.com</span>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#ea4335" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></span><b>Email</b><span>sudhanshusaini546@gmail.com</span>
         </a>
         <a class="contact-card" href="tel:+917726913361">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.11 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><b>Phone</b><span>+91-7726913361</span>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.11 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><b>Phone</b><span>+91-7726913361</span>
         </a>
         <a class="contact-card" href="https://www.linkedin.com/in/sudhanshusaini1/" target="_blank" rel="noopener">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1-.02 5 2.5 2.5 0 0 1 .02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.4 2.6 4.4 6V21h-4v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H10V9z"/></svg></span><b>LinkedIn</b><span>/in/sudhanshusaini1</span>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="#0a66c2" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1-.02 5 2.5 2.5 0 0 1 .02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.4 2.6 4.4 6V21h-4v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H10V9z"/></svg></span><b>LinkedIn</b><span>/in/sudhanshusaini1</span>
         </a>
         <a class="contact-card" href="https://github.com/sudhanshu546" target="_blank" rel="noopener">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.8-2.4 4.6-4.6 4.9.4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span><b>GitHub</b><span>github.com/sudhanshu546</span>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="#181717" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.8-2.4 4.6-4.6 4.9.4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span><b>GitHub</b><span>github.com/sudhanshu546</span>
         </a>
-        <a class="contact-card" href="javascript:void(0)" onclick="downloadResume()">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg></span><b>Resume</b><span>Download PDF</span>
-        </a>
+        <button class="contact-card" onclick="downloadResume()" aria-label="Download resume as PDF">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg></span><b>Resume</b><span>Download PDF</span>
+        </button>
       </div>
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="container">
@@ -653,12 +735,6 @@
       .replace(/…/g, "...")
       .replace(/[^\x00-\xFF\u2013\u2014\u2018\u2019\u201C\u201D\u2022\u2026]/g, "")
       .trim();
-    const short = (s, n) => {
-      if (s.length <= n) return s;
-      const cut = s.slice(0, n);
-      const sp = cut.lastIndexOf(" ");
-      return (sp > n * 0.5 ? cut.slice(0, sp) : cut) + "...";
-    };
     const need = h => { if (y + h > ph - mb) { doc.addPage(); y = mt; } };
 
     const sectionTitle = t => {
@@ -698,10 +774,10 @@
     doc.setDrawColor(...ACCENT); doc.setLineWidth(0.6);
     doc.line(ml, y, pw - mr, y); y += 4;
 
-    sectionTitle("Profile");
-    const firstP = document.querySelector("#about .about-grid > div:first-child p");
-    if (firstP) {
-      const lines = wrap(clean(firstP.textContent), 8.3);
+    sectionTitle("Professional Summary");
+    const summary = document.querySelector("header.hero .tagline");
+    if (summary) {
+      const lines = wrap(clean(summary.textContent), 8.3);
       need(lines.length * lh(8.3) + 1);
       doc.setTextColor(...DARK);
       doc.text(lines, ml, y);
@@ -722,8 +798,7 @@
       if (date) doc.text(clean(date), pw - mr, y, { align: "right" });
       y += lh(7.5) + 1.2;
       const bullets = item.querySelectorAll(".tl-body li");
-      const maxBullets = idx === 0 ? bullets.length : Math.min(bullets.length, 4);
-      for (let b = 0; b < maxBullets; b++) {
+      for (let b = 0; b < bullets.length; b++) {
         const lines = wrap(clean(bullets[b].textContent), 8.3, cw - 4);
         need(lines.length * lh(8.3) + 1);
         doc.setTextColor(...DARK);
@@ -737,12 +812,8 @@
     sectionTitle("Technical Skills");
     document.querySelectorAll("#skills .skill-group").forEach(group => {
       const gname = group.querySelector("h3")?.textContent.trim() || "";
-      const skills = [];
-      group.querySelectorAll(".skill-row").forEach(row => {
-        const b = row.querySelector("b")?.textContent.trim();
-        const pct = row.querySelector(".label span")?.textContent.trim();
-        if (b) skills.push(pct ? b + " (" + pct + ")" : b);
-      });
+      const skills = Array.from(group.querySelectorAll(".skill-tile span"))
+        .map(s => s.textContent.trim()).filter(Boolean);
       need(6);
       doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...ACCENT);
       doc.text(gname.toUpperCase(), ml, y); y += lh(8) + 0.8;
@@ -756,11 +827,11 @@
     });
     y += 1.0;
 
-    sectionTitle("Professional Projects");
-    document.querySelectorAll("#projects .proj").forEach((p, idx) => {
+    const renderProject = (p, idx) => {
       const t = clean(p.querySelector("h3")?.textContent || "");
-      const tags = Array.from(p.querySelectorAll(".tags span")).map(s => s.textContent.trim()).join(", ");
-      const desc = short(clean(p.querySelector("p")?.textContent || ""), 90);
+      const tags = Array.from(p.querySelectorAll(".tags span, .featured-tags span")).map(s => s.textContent.trim()).join(", ");
+      const desc = Array.from(p.querySelectorAll("p")).map(x => clean(x.textContent)).join(" ").trim();
+      const links = Array.from(p.querySelectorAll(".featured-actions a, .proj .links a")).map(a => a.textContent.trim() + ": " + a.href).join("  |  ");
       need(10);
       if (idx > 0) { doc.setDrawColor(...GRAY); doc.setLineWidth(0.2); doc.line(ml, y, pw - mr, y); y += 2; }
       doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...DARK);
@@ -779,13 +850,26 @@
         doc.text(dl, ml, y);
         y += dl.length * lh(8) + 1;
       }
+      if (links) {
+        const ll = wrap(links, 7.5);
+        need(ll.length * lh(7.5) + 1);
+        doc.setTextColor(...ACCENT);
+        doc.text(ll, ml, y);
+        y += ll.length * lh(7.5) + 1;
+      }
       y += 1.0;
-    });
+    };
 
-    sectionTitle("Open Source");
-    document.querySelectorAll("#opensource .repo-row").forEach((r, idx) => {
+    sectionTitle("Featured Project");
+    document.querySelectorAll("#featured .proj").forEach((p, idx) => renderProject(p, idx));
+
+    sectionTitle("Professional Projects");
+    document.querySelectorAll("#projects .proj").forEach((p, idx) => renderProject(p, idx));
+
+    sectionTitle("Engineering Projects on GitHub");
+    document.querySelectorAll("#github .repo-row").forEach((r, idx) => {
       const n = clean(r.querySelector(".name")?.textContent || "");
-      const d = short(clean(r.querySelector(".desc")?.textContent || ""), 60);
+      const d = Array.from(r.querySelectorAll(".desc")).map(x => clean(x.textContent)).join(" ").trim();
       const links = Array.from(r.querySelectorAll(".repo-link")).map(a => a.textContent.trim() + ": " + a.href).join("  |  ");
       need(8);
       if (idx > 0) { doc.setDrawColor(...GRAY); doc.setLineWidth(0.2); doc.line(ml, y, pw - mr, y); y += 2; }
@@ -829,13 +913,19 @@
       doc.text(String(i) + " / " + String(total), pw / 2, ph - 12, { align: "center" });
     }
 
-    doc.save("sudhanshu_saini_software_engineer.pdf");
+    doc.save("sudhanshu_saini_java_backend_engineer.pdf");
   }
 
   const navToggle = document.getElementById("navToggle");
   const navLinks = document.getElementById("navLinks");
-  navToggle.addEventListener("click", () => navLinks.classList.toggle("open"));
-  navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
+  navToggle.addEventListener("click", () => {
+    const open = navLinks.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", String(open));
+  });
+  navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+  }));
 
   const themeToggle = document.getElementById("themeToggle");
   const applyTheme = theme => {
@@ -849,16 +939,6 @@
     applyTheme(next);
     localStorage.setItem("theme", next);
   });
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll(".bar i").forEach(bar => bar.style.width = bar.dataset.w);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  document.querySelectorAll(".skills-grid").forEach(grid => observer.observe(grid));
 </script>
 </body>
 </html>

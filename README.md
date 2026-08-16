@@ -1,22 +1,22 @@
-# Sudhanshu Saini — Profile Page
+# Sudhanshu Saini — Portfolio
 
-A single-page profile site sharing career details — About, Experience, Projects, Open Source, Skills, Education, and Contact. Built with plain HTML + CSS + vanilla JS, no frameworks or build step — deploy it anywhere static hosting works.
+Single-page Java Backend Engineer portfolio — Experience, Featured Project, Skills, Projects, GitHub, Education, and Contact. Built with plain HTML + CSS + vanilla JS, no frameworks or build step — deploy it anywhere static hosting works.
 
 ## Sections
 
-- **Hero** — role text, quick stats, contact buttons
-- **About** — summary + quick info (location, email, phone, links)
-- **Experience** — timeline (Servosys Solutions, Hashstudioz Technologies)
+- **Hero** — role, tech focus, proof points, contact info, CTAs
+- **Professional Experience** — timeline (Servosys Solutions, Hashstudioz Technologies)
+- **Featured Engineering Project** — Workforce OS (flagship)
+- **Technical Skills** — icon tiles grouped by engineering area
 - **Professional Projects** — Fuel Management, SpaSalon, E-Parking
-- **Open Source** — links to GitHub repos (linkedin, workforce-os, linkedin-clone)
-- **Skills** — animated progress bars grouped by category
+- **Featured Engineering Projects** — GitHub repos (linkedin, linkedin-clone)
 - **Education** — Galgotias University
-- **Contact** — email, phone, LinkedIn, GitHub
+- **Contact** — email, phone, LinkedIn, GitHub, resume download
 
 ## Deploy on GitHub Pages
 
 1. Create a GitHub repo (e.g. `sudhanshu-profile`).
-2. Upload these files (or push):
+2. Push these files:
    ```
    git init
    git add .
@@ -37,8 +37,10 @@ Just double-click `index.html`, or run `python -m http.server` in this folder an
 
 ## Edit
 
-Open `index.html` and update text in the sections. All content lives in that one file:
+All content lives in `index.html`:
 
 - Experience details and dates → `#experience`
-- Skills percentages → the `data-w` values in `#skills`
-- Social links → the `href` values in hero, about, and `#contact`
+- Skills tiles → the icon tiles in `#skills`
+- Featured project → `#featured`
+- GitHub links → `#github`
+- Social links → hero details and `#contact`
